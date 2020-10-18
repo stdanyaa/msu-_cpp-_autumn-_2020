@@ -13,8 +13,8 @@ void NormalWorkTest(){
         a[i]='a'+i;
         b[i]='0'+i;
     }
-    assert(a[4]=='e');
-    assert(b[4]=='4');
+    assert((a[0] == 'a') && (a[4]=='e'));
+    assert((b[0] == '0') && (b[4]=='4'));
 }
 
 void OutOfRangeTest(){
@@ -27,27 +27,39 @@ void OutOfRangeTest(){
     return;
 }
 
-void RewriteTest(){
+void AllocatorResetTest(){
     Allocator Al;
     Al.makeAllocator(6);
     char* a = Al.alloc(4);
-    for(int i=0;i<4;i++)
-    {
-        a[i]='a';
-    }
+    *a='a';
     Al.reset();
     char* b = Al.alloc(6);
-    for(int i=0;i<3;i++)
-    {
-        b[i]='b';
-    }
-    assert(a[2] == 'b');
+    *b='b';
+    assert(*a == 'b');
+}
+
+void MemoryAllocationTest(){
+    // alloc without makeAlloc
+    // is not allowed
+    Allocator Al;
+    char *a = Al.alloc(1);
+    assert(a == nullptr);
+    // makeAlloc double calling
+    // doesn't leak memory
+    Al.makeAllocator(1);
+    a = Al.alloc(1);
+    *a = 'a';
+    Al.makeAllocator(1);
+    Al.reset();
+    char *b = Al.alloc(1);
+    assert(*a == *b);
 }
 
 int main()
 {
     NormalWorkTest();
     OutOfRangeTest();
-    RewriteTest();
+    AllocatorResetTest();
+    MemoryAllocationTest();
     std::cout<<"Success!\n";
 }
