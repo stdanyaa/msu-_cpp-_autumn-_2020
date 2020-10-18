@@ -3,7 +3,7 @@
 class Allocator{
     char* memory_pointer_ = nullptr;
     size_t size_;
-    size_t offset_;
+    size_t offset_ = 0;
 
 
 public:
@@ -11,7 +11,6 @@ public:
         if (memory_pointer_!=nullptr) return;
         if (maxSize == 0) return;
         size_ = maxSize;
-        offset_ = 0;
         memory_pointer_ = new char[size_];
     };
     char* alloc(size_t size){
@@ -21,7 +20,7 @@ public:
         if (offset_ + size > size_){
             return nullptr;
         }
-        if (size <= 0){
+        if (size == 0){
             return nullptr;
         }
         char* ret = memory_pointer_ + offset_;
