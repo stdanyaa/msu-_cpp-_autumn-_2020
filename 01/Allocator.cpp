@@ -3,7 +3,7 @@
 class Allocator{
     char* memory_pointer_;
     size_t size_ = -1;
-    size_t offset_;
+    size_t offset_; 
 
 
 public:
