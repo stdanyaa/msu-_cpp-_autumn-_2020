@@ -1,15 +1,17 @@
-C=g++
+CXX=g++
 FLAGS=-std=c++17 -Wall -pedantic
-all: test
+# all: test
+
 
 test: tests.o Allocator.o
-	$(C) $(FLAGS) -o test tests.o Allocator.o
+	$(CXX) $(FLAGS) -o test tests.o Allocator.o
+	./test
 
-tests.o: tests.cpp Allocator.cpp
-	$(C) $(FLAGS) -c tests.cpp
+tests.o: tests.cpp
+	$(CXX) $(FLAGS) -c tests.cpp
 
 Allocator.o: Allocator.cpp
-	$(C) $(FLAGS) -c Allocator.cpp
+	$(CXX) $(FLAGS) -c Allocator.cpp
 
 clean:
 	rm -rf test *.o
