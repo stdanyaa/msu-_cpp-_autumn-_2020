@@ -1,21 +1,21 @@
 #include <cstddef>
 
 class Allocator{
-    char* memory_pointer_;
-    size_t size_ = -1;
-    size_t offset_; 
+    char* memory_pointer_ = nullptr;
+    size_t size_;
+    size_t offset_;
 
 
 public:
     void makeAllocator(size_t maxSize){
-        if (size_ != -1) return;
-        if (maxSize <= 0) return;
+        if (memory_pointer_!=nullptr) return;
+        if (maxSize == 0) return;
         size_ = maxSize;
         offset_ = 0;
         memory_pointer_ = new char[size_];
     };
     char* alloc(size_t size){
-        if (size_ == -1){
+        if (memory_pointer_ == nullptr){
             return nullptr;
         }
         if (offset_ + size > size_){
