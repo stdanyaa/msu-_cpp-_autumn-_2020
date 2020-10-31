@@ -49,7 +49,6 @@ void TokenParser::SetDigitTokenCallback(digittokencallback_t func)  { DigitToken
 void TokenParser::Parse(const std::string &text)
 {
     std::string token;
-    //better use indexes
     std::string::const_iterator it = text.begin();
     std::string::const_iterator it_end = text.end();
     StartCallback();
