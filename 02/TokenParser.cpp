@@ -31,14 +31,10 @@ uint64_t TokenParser::ToDigit(std::string token)
     
 TokenParser::TokenParser()
 {
-    EndCallback =  []() {std::cout<<"Default End Callback\n"<<std::endl;};
-    StartCallback = []() {std::cout<<"\nDefault Start Callback"<<std::endl;};
-    DigitTokenCallback = [](uint64_t digittoken){
-        std::cout<<"Default Digit Token Callback"<<" digit:\t"<<digittoken<<std::endl; 
-    };
-    StringTokenCallback = [](std::string& token){
-        std::cout<<"Default String Token Callback"<<" token:\t"<<token<<std::endl;
-    };
+    EndCallback =  []() {};
+    StartCallback = []() {};
+    DigitTokenCallback = [](uint64_t digittoken){};
+    StringTokenCallback = [](std::string& token){};
 }
 
 void TokenParser::SetStartCallback(callback_t func)                 { StartCallback = func;}

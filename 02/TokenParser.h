@@ -3,10 +3,11 @@
 #include <iostream>
 #include <ctype.h>
 #include <string>
+#include <functional>
 
-using callback_t = void (*)();
-using digittokencallback_t = void (*)(uint64_t);
-using stringtokencallback_t = void (*)(std::string&);
+using callback_t = std::function<void()>;
+using digittokencallback_t = std::function<void(uint64_t)>;
+using stringtokencallback_t = std::function<void(std::string&)>;
 class TokenParser
 {
 private:

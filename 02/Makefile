@@ -9,7 +9,7 @@ tests: tests.o TokenParser.o
 tests.o: tests.cpp
 	$(CXX) $(FLAGS) -c tests.cpp
 
-TokenParser.o: TokenParser.cpp
+TokenParser.o: TokenParser.cpp TokenParser.h
 	$(CXX) $(FLAGS) -c TokenParser.cpp
 
 clean:
