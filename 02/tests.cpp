@@ -15,14 +15,14 @@ void SetCallbacksTest(){
     int *str_n = new int;
     *dig_n = *str_n = 0;
     TokenParser tparser;
-    digittokencallback_t PrintDigitCount = [dig_n](uint64_t digit) {
+    digittokencallback_t DigitCount = [dig_n](uint64_t digit) {
         *dig_n += 1;
     }; 
-    stringtokencallback_t PrintStringCount = [str_n](std::string& token){
+    stringtokencallback_t StringCount = [str_n](std::string& token){
         *str_n += 1;
     };
-    tparser.SetDigitTokenCallback(PrintDigitCount);
-    tparser.SetStringTokenCallback(PrintStringCount);
+    tparser.SetDigitTokenCallback(DigitCount);
+    tparser.SetStringTokenCallback(StringCount);
     std::string text("1 1 2 23 a b c deee 4 fg");
     tparser.Parse(text);
 
